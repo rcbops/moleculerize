@@ -1,0 +1,11 @@
+-c constraints.txt
+mock
+pytest-rpc
+flake8
+pytest
+pytest-cov
+pytest-mock
+tox
+pyyaml
+jinja2
+click
