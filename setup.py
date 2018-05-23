@@ -16,7 +16,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author="rcbops",
     author_email='rpc-automation@rackspace.com',
-    url='https://github.com/rcbops/molecularize',
+    url='https://github.com/rcbops/moleculerize',
     entry_points={
         'console_scripts': [
             'moleculerize=moleculerize.__init__:main',
