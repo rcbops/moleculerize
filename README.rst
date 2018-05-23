@@ -11,19 +11,19 @@ Quick Start Guide
 
     $ pip install moleculerize
 
-2. For more information on using the Zigzag launch help by::
+2. For more information on using the moleculerize launch help by::
 
     $ moleculerize --help
 
 3. Here is an example of building a molecule config from an Ansible dynamic inventory file::
 
-    $ moleculerize /path/to_my/dynamic_inventory.json
+    $ moleculerize --output molecule/default/molecule.yml /path/to_my/dynamic_inventory.json
 
 
 Release Process
 ---------------
 
-See `release_process.rst`_ for information on the release process for 'zigzag'
+See `release_process.rst`_ for information on the release process for 'moleculerize'
 
 Credits
 -------

@@ -1,4 +1,4 @@
-#!/usr/bin/env/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from setuptools import setup
@@ -23,6 +23,7 @@ setup(
         ],
     },
     packages=['moleculerize'],
+    install_requires=['Click>=6.0', 'jinja2'],
     include_package_data=True,
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     license="Apache Software License 2.0",
@@ -30,7 +31,6 @@ setup(
     keywords='moleculerize',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
-        'Framework :: Flake8',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',

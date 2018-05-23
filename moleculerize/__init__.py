@@ -1,10 +1,11 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # ======================================================================================================================
 # Imports
 # ======================================================================================================================
 import sys
 import json
-from argparse import ArgumentParser
 from jinja2 import Environment, FileSystemLoader, TemplateError
 import pkg_resources
 import click
@@ -16,6 +17,7 @@ import click
 TEMPLATES_DIR = 'data'
 TEMPLATE = 'molecule.yml.j2'
 OUTPUT_FILE = 'molecule.yml'
+__version__ = '0.0.0'
 
 
 # ======================================================================================================================
@@ -23,6 +25,7 @@ OUTPUT_FILE = 'molecule.yml'
 # ======================================================================================================================
 def _load_input_file(file_path):
     """Read and validate the input file contents.
+
     Args:
         file_path (str): A string representing a valid file path.
     Returns:
@@ -42,6 +45,7 @@ def _load_input_file(file_path):
 
 def generate_hosts_inventory(json_inventory):
     """Build a dictionary of hosts and associated groups from a Ansible JSON inventory file as keys.
+
     Args:
         json_inventory (dict): A dictionary object representing a Ansible JSON inventory file.
     Returns:
@@ -78,6 +82,7 @@ def generate_hosts_inventory(json_inventory):
 
 def render_molecule_template(inventory_hosts, template_file):
     """Create a molecule config file from a template.
+
     Args:
         inventory_hosts (dict(list(str)): A dictionary of inventory hosts with each host having a list of associated
             groups.
@@ -114,13 +119,11 @@ def render_molecule_template(inventory_hosts, template_file):
               default=OUTPUT_FILE,
               help='Output file path for molecule config.')
 def main(inv_file, template, output):
-    """Main program routine.
-    Args:
-        inv_file (str): The Ansible inventory file.
-        template (str): The template to use.
-        output (str): The target output file
-    Returns:
-        int: The exit code to return to the shell.
+    """Build molecule config files from an Ansible dynamic inventory file
+
+    \b
+    Required Arguments:
+        INV_FILE        A valid Ansible dynamic inventory file
     """
 
     exit_code = 0
