@@ -8,3 +8,4 @@ tox
 pyyaml
 jinja2
 click
+twine
