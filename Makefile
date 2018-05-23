@@ -109,14 +109,14 @@ bump-minor: ## bumps the version of by minor
 bump-patch: ## bumps the version of by patch
 	bumpversion patch
 
-release-major: clean-build build develop bump-major lint test publish ## package and upload a major release
+release-major: clean-build bump-major build develop lint test publish ## package and upload a major release
 	echo 'Successfully released!'
 	echo 'Please push the newly created tag and commit to GitHub.'
 
-release-minor: clean-build build develop bump-minor lint test publish ## package and upload a minor release
+release-minor: clean-build bump-minor build develop lint test publish ## package and upload a minor release
 	echo 'Successfully released!'
 	echo 'Please push the newly created tag and commit to GitHub.'
 
-release-patch: clean-build build develop bump-patch lint test publish ## package and upload a patch release
+release-patch: clean-build bump-patch build develop lint test publish ## package and upload a patch release
 	echo 'Successfully released!'
 	echo 'Please push the newly created tag and commit to GitHub.'
