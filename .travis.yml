@@ -1,14 +1,18 @@
-# Config file for automatic testing at travis-ci.org
 
 language: python
 python:
-  - 3.6
-  - 3.5
-  - 3.4
-  - 2.7
+ - "2.7"
+ - "3.5"
+ - "3.6"
 
-# Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install -U tox-travis
-
-# Command to run tests, e.g. python setup.py test
+install:
+ - pip install tox-travis
 script: tox
+
+stages:
+  - test
+
+jobs:
+  include:
+  - python: 3.6
+    env: TOXENV=flake8
