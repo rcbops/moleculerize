@@ -41,7 +41,9 @@ class TestMoleculerize(object):
 
         # Setup
         hosts_inventory = moleculerize.generate_hosts_inventory(json_inventory)
-        render_yaml = yaml.load(moleculerize.render_molecule_template(hosts_inventory, moleculerize.TEMPLATE))
+        scenario = 'groovy'
+        render_yaml = yaml.load(moleculerize.render_molecule_template(scenario, hosts_inventory,
+                                                                      moleculerize.TEMPLATE))
 
         # Expectations
         platforms_exp = [{'name': host, 'groups': groups[host]} for host in groups.keys() if host != 'host6']
@@ -52,6 +54,7 @@ class TestMoleculerize(object):
         # Test
         for platform in platforms_exp:
             assert platform in observed
+        assert scenario == render_yaml['scenario']['name']
 
     @pytest.mark.skipif(SKIP_EVERYTHING, reason='Skip if we are creating/modifying tests!')
     def test_missing_required_keys(self):
@@ -74,10 +77,11 @@ class TestMoleculerize(object):
 
         # Setup
         hosts_inventory = moleculerize.generate_hosts_inventory(json_inventory)
+        scenario = 'default'
 
         # Test
         with pytest.raises(RuntimeError):
-            moleculerize.render_molecule_template(hosts_inventory, 'MISSING_TEMPLATE')
+            moleculerize.render_molecule_template(scenario, hosts_inventory, 'MISSING_TEMPLATE')
 
     @pytest.mark.skipif(SKIP_EVERYTHING, reason='Skip if we are creating/modifying tests!')
     def test_invalid_inventory_path(self):
