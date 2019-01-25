@@ -80,10 +80,11 @@ def generate_hosts_inventory(json_inventory):
     return inventory_hosts
 
 
-def render_molecule_template(inventory_hosts, template_file):
+def render_molecule_template(scenario, inventory_hosts, template_file):
     """Create a molecule config file from a template.
 
     Args:
+        scenario (str): The scenario name to be defined as the scenario in the rendering
         inventory_hosts (dict(list(str)): A dictionary of inventory hosts with each host having a list of associated
             groups.
         template_file (str): The template file to use for rendering.
@@ -99,7 +100,8 @@ def render_molecule_template(inventory_hosts, template_file):
                          )
 
     try:
-        return j2_env.get_template(template_file).render(hosts=inventory_hosts)
+        return j2_env.get_template(template_file).render(
+            hosts=inventory_hosts, scenario=scenario)
     except TemplateError as e:
         print(e)
         raise RuntimeError('Template "{}" not found!'.format(template_file))
@@ -110,6 +112,10 @@ def render_molecule_template(inventory_hosts, template_file):
 # ======================================================================================================================
 @click.command()
 @click.argument('inv_file', type=click.Path(exists=True))
+@click.option('--scenario', '-s',
+              type=click.STRING,
+              default='default',
+              help='Molecule config scenario to create.')
 @click.option('--template', '-t',
               type=click.STRING,
               default=TEMPLATE,
@@ -118,7 +124,7 @@ def render_molecule_template(inventory_hosts, template_file):
               type=click.STRING,
               default=OUTPUT_FILE,
               help='Output file path for molecule config.')
-def main(inv_file, template, output):
+def main(inv_file, scenario, template, output):
     """Build molecule config files from an Ansible dynamic inventory file
 
     \b
@@ -133,10 +139,11 @@ def main(inv_file, template, output):
 
         try:
             with open(output, 'wb') as f:
-                f.write(render_molecule_template(inventory_hosts, template))
+                f.write(render_molecule_template(scenario, inventory_hosts, template))
         except IOError:
             raise RuntimeError('Cannot write "{}" Molecule configuration file!'.format(output))
 
+        print("Scenario: {}".format(scenario))
         print("Inventory file: {}".format(inv_file))
         print("Template file: {0}/{1}".format(TEMPLATES_DIR, template))
         print("Output file: {}".format(output))

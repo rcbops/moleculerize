@@ -19,6 +19,28 @@ Quick Start Guide
 
     $ moleculerize --output molecule/default/molecule.yml /path/to_my/dynamic_inventory.json
 
+Options
+-------
+
+Options start with one or two dashes.  Many of the options an additional value
+next to them.
+
+-h, --help
+    Usage help. This lists all current command line options with a short
+    description.
+
+-o, --output <file>
+    Write the molecule config to <file>.  If this option is omitted, the
+    config will be written to `molecule.yml`.
+
+-s, --scenario <name>
+    The molecule config scenario to be created and defined in the config file.
+
+-t, --template <file>
+    Use the jinja2 template <file> for creating the molecule config file.  If
+    this option is omitted, the template is assumed to be
+    `data/molecule.yml.j2`.
+
 
 Release Process
 ---------------
