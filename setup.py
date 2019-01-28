@@ -11,7 +11,7 @@ with open('HISTORY.rst') as history_file:
 
 setup(
     name='moleculerize',
-    version='1.0.0',
+    version='1.1.0',
     description="Build molecule config files from an Ansible dynamic inventory file",
     long_description=readme + '\n\n' + history,
     author="rcbops",

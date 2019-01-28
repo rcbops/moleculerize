@@ -17,7 +17,7 @@ import click
 TEMPLATES_DIR = 'data'
 TEMPLATE = 'molecule.yml.j2'
 OUTPUT_FILE = 'molecule.yml'
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 
 
 # ======================================================================================================================
