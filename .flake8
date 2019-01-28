@@ -1,0 +1,5 @@
+[flake8]
+max-line-length = 120
+ignore = M401, N401
+filename_check1 = filter_regex=test_.+
+                  filename_regex=test_[\w-]+$
